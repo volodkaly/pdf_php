@@ -1,5 +1,4 @@
 <?php
-
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
@@ -11,15 +10,21 @@ use Endroid\QrCode\Writer\PngWriter;
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
-    $courseID = isset($_POST['courseID']) ? $_POST['courseID'] : '';
-    $courseName = isset($_POST['courseName']) ? $_POST['courseName'] : '';
-    $studentName = isset($_POST['studentName']) ? $_POST['studentName'] : '';
-    $graduationDate = isset($_POST['graduationDate']) ? $_POST['graduationDate'] : '';
+    $courseID = htmlspecialchars($_POST['courseID']) ?? '';
+    $courseName = htmlspecialchars($_POST['courseName']) ?? '';
+    $studentName = htmlspecialchars($_POST['studentName']) ?? '';
+    $graduationDate = htmlspecialchars($_POST['graduationDate']) ?? '';
 
-    // $courseID = preg_replace('/\s+/', ' ', $courseID);
 
-    // $studentName = preg_replace('/\s+/', ' ', $studentName);
-    // $studentName = ucwords($studentName);
+    function mb_ucwords($str)
+    {
+        $str = mb_convert_case($str, MB_CASE_TITLE, "UTF-8");
+        return $str;
+    }
+
+    $courseID = preg_replace('/\s+/', ' ', $courseID);
+    $studentName = preg_replace('/\s+/', ' ', $studentName);
+    $studentName = mb_ucwords($studentName);
 
     if (empty($courseID) || empty($courseName) || empty($studentName) || empty($graduationDate)) {
         echo "All fields are required.";
