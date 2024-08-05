@@ -12,26 +12,28 @@
   <form id="form" class="w-50 m-3 shadow p-3 mb-5 bg-body-tertiary rounded" style="min-width: 200px" action="server.php" method="POST">
     Номер:
     <br />
-    <input class="form-control" id="courseID" type="text" name="courseID" maxlength="100" placeholder="номер курсу" required />
-
+    <input class="form-control" id="courseID" type="text" name="courseID" maxlength="100" placeholder="номер курсу" />
     <br />
     Курс:
     <br />
-    <input class="form-control" type="text" name="courseName" maxlength="100" placeholder="назва курсу" required />
+    <input class="form-control" type="text" name="courseName" maxlength="100" placeholder="назва курсу" />
     <br />
     Ім'я учня:
     <br />
-    <input class="form-control" type="text" name="studentName" maxlength="100" placeholder="ім'я учня" required />
+    <input class="form-control" type="text" name="studentName" maxlength="100" placeholder="ім'я учня" />
     <br />
     Дата завершення курсу:
     <br />
-    <input class="form-control" type="date" name="graduationDate" placeholder="дата завершення" required />
+    <input class="form-control" type="date" name="graduationDate" placeholder="дата завершення" />
     <button class="btn btn-primary m-2" id="downloadReportPDF" type="submit">
       Отримати сертифікат
     </button>
   </form>
 </body>
-
-</html>
+<?php
+if (isset($_GET['error'])) {
+    echo '<div class="alert alert-danger">' . htmlspecialchars($_GET['error']) . '</div>';
+}
+?>
 
 <!-- завдання https://docs.google.com/document/d/1__9M0ztm1VifyZwLB9Sl6S3xo8NlJSoCBYIKxvpIUxQ/edit -->

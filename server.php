@@ -15,7 +15,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $studentName = htmlspecialchars($_POST['studentName']) ?? '';
     $graduationDate = htmlspecialchars($_POST['graduationDate']) ?? '';
 
-
     function mb_ucwords($str)
     {
         $str = mb_convert_case($str, MB_CASE_TITLE, "UTF-8");
@@ -27,7 +26,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $studentName = mb_ucwords($studentName);
 
     if (empty($courseID) || empty($courseName) || empty($studentName) || empty($graduationDate)) {
-        echo "All fields are required.";
+        $error = urlencode("All_fields_are_required.");
+        $queryString = http_build_query([
+            'error' => $error,
+            'courseID' => $courseID,
+            'courseName' => $courseName,
+            'studentName' => $studentName,
+            'graduationDate' => $graduationDate,
+        ]);
+        header("Location: index.php?$queryString");
         exit;
     }
 
