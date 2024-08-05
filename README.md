@@ -1,3 +1,7 @@
+
+
+![image](https://github.com/user-attachments/assets/31b1124c-977e-4b13-b453-d4d3f445a438)
+
 МАКСИМАЛЬНО СТИСЛО, ЯКЩО ВИ НАВІТЬ НЕ ПРОГРАМІСТ: <br>
 встановіть VSCode <br>
 встановіть Docker <br>
